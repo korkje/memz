@@ -1,9 +1,9 @@
-# memz
+# memz [![JSR](https://jsr.io/badges/@korkje/memz)](https://jsr.io/@korkje/memz)
 
 Memoize any function.
 
 ```ts
-import memoize from "https://deno.land/x/memz/mod.ts";
+import memoize from "jsr:@korkje/memz";
 
 const add = memoize((a: number, b: number) => a + b);
 ```

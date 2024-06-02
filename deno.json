@@ -1,0 +1,9 @@
+{
+    "name": "@korkje/memz",
+    "version": "0.0.0",
+    "exports": "./mod.ts",
+    "lock": false,
+    "imports": {
+        "@std/assert": "jsr:@std/assert@^0.225.3"
+    }
+}

@@ -1,4 +1,4 @@
-import { assertEquals } from "./deps.ts";
+import { assertEquals } from "@std/assert";
 import memoize from "../lib/memoize.ts";
 
 Deno.test("Regular", () => {
