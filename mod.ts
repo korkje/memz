@@ -1,1 +1,1 @@
-export { default, memoize } from "./lib/memoize.ts";
+export { default, memoize } from "lib/memoize.ts";

@@ -1,5 +1,5 @@
 import { assertEquals } from "@std/assert";
-import memoize from "../lib/memoize.ts";
+import memoize from "lib/memoize.ts";
 
 Deno.test("Regular", () => {
     let count = 0;
