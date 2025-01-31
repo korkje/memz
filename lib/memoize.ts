@@ -1,15 +1,15 @@
 /**
- * Memoize any function.
+ * Wrap any function with a cache. Default keyFn is `JSON.stringify`.
  *
- * @param f - The function to memoize.
- * @param c - Optional initial cache.
+ * @param fn - The function to memoize.
+ * @param options - Options (keyFn, initial cache).
  */
 export const memoize = <P extends unknown[], R>(
-    f: (...p: P) => R,
-    c: Record<string, R> = {},
-) => (...p: P): R => {
-    const k = JSON.stringify(p);
-    return k in c ? c[k] : c[k] = f(...p);
-};
+    fn: (...p: P) => R,
+    { keyFn = JSON.stringify, cache = {} }: {
+        keyFn?: (params: P) => string | number | symbol;
+        cache?: Record<string | number | symbol, R>;
+    } = {},
+) => (...p: P): R => cache[keyFn(p)] ??= fn(...p);
 
 export default memoize;

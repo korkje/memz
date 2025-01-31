@@ -11,7 +11,6 @@ Deno.test("Regular", () => {
     assertEquals(add(1, 2), 3);
     assertEquals(add(1, 2), 3);
     assertEquals(add(1, 2), 3);
-
     assertEquals(count, 1);
 });
 
@@ -22,12 +21,18 @@ Deno.test("Recursive", () => {
 });
 
 Deno.test("Custom cache", () => {
-    const cache = {
-        "[0]": 0,
-        "[1]": 1,
-    };
+    const cache = { "[0]": 0, "[1]": 1 };
 
-    const fib = memoize((n: number): number => fib(n - 2) + fib(n - 1), cache);
+    const fib = memoize((n: number): number => fib(n - 2) + fib(n - 1), { cache });
 
     assertEquals(fib(10), 55);
+});
+
+Deno.test("Custom keyFn", () => {
+    const symbol = Symbol();
+    const cache = { [symbol]: 1 };
+    const keyFn = () => symbol;
+    const fn = memoize((): number => 0, { cache, keyFn });
+
+    assertEquals(fn(), 1);
 });
