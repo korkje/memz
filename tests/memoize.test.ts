@@ -22,7 +22,6 @@ Deno.test("Recursive", () => {
 
 Deno.test("Custom cache", () => {
     const cache = { "[0]": 0, "[1]": 1 };
-
     const fib = memoize((n: number): number => fib(n - 2) + fib(n - 1), { cache });
 
     assertEquals(fib(10), 55);

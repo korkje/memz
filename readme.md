@@ -1,6 +1,6 @@
 # memz [![JSR](https://jsr.io/badges/@korkje/memz)](https://jsr.io/@korkje/memz)
 
-Memoize any function.
+Wrap any function with a cache.
 
 ```ts
 import memoize from "jsr:@korkje/memz";
@@ -23,6 +23,21 @@ const fib = memoize((n: number): number => {
 Initial cache:
 
 ```ts
-const cache = { "0": 0, "1": 1 };
-const fib = memoize((n: number): number => fib(n - 2) + fib(n - 1), cache);
+// Start with 2 and 1, i.e. create the Lucas sequence.
+const cache = { "[0]": 2, "[1]": 1 };
+const fib = memoize(
+    (n: number): number => fib(n - 2) + fib(n - 1),
+    { cache },
+);
+```
+
+By default, cache keys are arguments serialized to JSON, hence the `"[0]"` and `"[1]"` keys above.
+
+Custom cache keys:
+
+```ts
+const fib = memoize(
+    (n: number): number => fib(n - 2) + fib(n - 1),
+    { keyFn: n => n },
+);
 ```
